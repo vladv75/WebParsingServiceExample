@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WebParsingServiceExample</string>
+    <string name="startButton">Start parsing</string>
+    <string name="stopButton">Stop</string>
+    <string name="hint_http_news_yandex_ru">http://news.yandex.ru</string>
+    <string name="https_www_yandex_ru">https://www.yandex.ru/</string>
+</resources>
