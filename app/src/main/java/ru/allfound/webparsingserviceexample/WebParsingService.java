@@ -3,7 +3,6 @@ package ru.allfound.webparsingserviceexample;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
@@ -62,13 +61,13 @@ public class WebParsingService extends Service {
 
                 Intent intent = new Intent().putExtra(MainActivity.PARAM_RESULT, result);
                 pendingIntent.send(WebParsingService.this, 0, intent);
-                sendNotification(result);
+                sendNotification();
             } catch (PendingIntent.CanceledException e) {
                 e.printStackTrace();
             }
         }
 
-        private void sendNotification(String result)
+        private void sendNotification()
                 throws PendingIntent.CanceledException {
 
             Context context = getApplicationContext();
@@ -81,15 +80,12 @@ public class WebParsingService extends Service {
                             .setContentTitle("Сервис парсинга")
                             .setContentText("Cтраница сайта загружена...");
 
-            Intent resultIntent = new Intent(context, MainActivity.class)
-                    .putExtra(MainActivity.PARAM_RESULT, result);
+            Intent resultIntent = new Intent(context, MainActivity.class);
+            resultIntent.setAction(Intent.ACTION_MAIN);
+            resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addParentStack(MainActivity.class);
-            stackBuilder.addNextIntent(resultIntent);
-
-            pendingIntent = stackBuilder.getPendingIntent(0,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+                    resultIntent, 0);
 
             mBuilder.setContentIntent(pendingIntent);
             NotificationManager mNotificationManager =
