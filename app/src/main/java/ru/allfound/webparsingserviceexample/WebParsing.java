@@ -1,5 +1,7 @@
 package ru.allfound.webparsingserviceexample;
 
+import android.text.Html;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,17 +21,16 @@ public class WebParsing {
     }
 
     public String parsing(String url) {
-        Document doc = null;
+        Document doc;
         StringBuilder stringBuilder = new StringBuilder();
 
         try {
             doc = Jsoup.connect(url).get();
-            String title = doc.title();
-            stringBuilder.append(doc.title()).append("\n");
+            stringBuilder.append(doc.title()).append("\n\n");
 
             Elements select = doc.select("a");
             for (Element element : select) {
-                stringBuilder.append(element.text()).append("\n");
+                stringBuilder.append(element.text()).append(" - ").append(element.attr("href")).append("\n\n");
             }
 
         } catch (IOException e) {

@@ -48,7 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/tvResult" />
+            android:id="@+id/tvResult"
+            android:autoText="false"
+            android:autoLink="email|web" />
     </ScrollView>
 
     <EditText
