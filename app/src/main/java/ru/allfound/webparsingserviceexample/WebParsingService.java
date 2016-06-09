@@ -76,9 +76,9 @@ public class WebParsingService extends Service {
                     (NotificationCompat.Builder) new NotificationCompat.Builder(context)
                             .setSmallIcon(android.R.drawable.ic_dialog_info)
                             .setAutoCancel(true)
-                            .setTicker("Страница загружена!")
-                            .setContentTitle("Сервис парсинга")
-                            .setContentText("Cтраница сайта загружена...");
+                            .setTicker("HTML page loaded!")
+                            .setContentTitle("Parsing Service")
+                            .setContentText("HTML page loaded...");
 
             Intent resultIntent = new Intent(context, MainActivity.class);
             resultIntent.setAction(Intent.ACTION_MAIN);
